@@ -1,15 +1,10 @@
 // ==UserScript==
-// @name         embyFile
-// @name:en      embyFile
-// @name:zh      emby打开文件夹和视频
-// @name:zh-CN   emby打开文件夹和视频
+// @name         embyLaunchLocalFiles
 // @namespace    http://tampermonkey.net/
-// @version      1.1.0
-// @description  emby/jellfin打开媒体文件夹及使用本地播放器播放视频
-// @description:zh-cn emby/jellfin打开媒体文件夹及使用本地播放器播放视频
-// @description:en  open media folder and play videos with local players in emby/jellfin
+// @version      0.1.0
+// @description  open media folder and play videos with local players in emby/jellfin
 // @license      MIT
-// @author       @bpking
+// @author       raindrop213
 // @match        *://*/web/index.html
 // @match        *://*/web/
 // ==/UserScript==

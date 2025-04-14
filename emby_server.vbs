@@ -1,7 +1,7 @@
 Option Explicit
 
 ' Emby Helper Service Auto Start Script
-' 修改为显示命令窗口以便调试
+' Changed to hidden window mode for background running
 
 Dim WshShell, fso
 
@@ -9,24 +9,24 @@ Dim WshShell, fso
 Set WshShell = CreateObject("WScript.Shell")
 Set fso = CreateObject("Scripting.FileSystemObject")
 
-' 使用绝对路径
+' Use absolute paths
 Dim pythonExePath, serverScriptPath
 pythonExePath = "H:\emby\embyLaunchLocalFiles\py310-embed\python.exe"
 serverScriptPath = "H:\emby\embyLaunchLocalFiles\emby_server.py"
 
 ' Check if files exist
 If Not fso.FileExists(pythonExePath) Then
-    MsgBox "错误: Python可执行文件未找到: " & pythonExePath, vbCritical, "Emby Helper Service启动失败"
+    MsgBox "Error: Python executable not found: " & pythonExePath, vbCritical, "Emby Helper Service Start Failed"
     WScript.Quit
 End If
 
 If Not fso.FileExists(serverScriptPath) Then
-    MsgBox "错误: 服务器脚本未找到: " & serverScriptPath, vbCritical, "Emby Helper Service启动失败"
+    MsgBox "Error: Server script not found: " & serverScriptPath, vbCritical, "Emby Helper Service Start Failed"
     WScript.Quit
 End If
 
-' 启动服务，窗口样式为1，表示正常显示窗口
-WshShell.Run """" & pythonExePath & """ """ & serverScriptPath & """", 1, False
+' Start service, window style 0 means hidden window (background running)
+WshShell.Run """" & pythonExePath & """ """ & serverScriptPath & """", 0, False
 
 ' Clean up objects
 Set fso = Nothing
