@@ -4,6 +4,7 @@
 // @version      0.1.0
 // @description  open media folder and play videos with local players in emby/jellfin
 // @license      MIT
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=emby.media
 // @author       raindrop213
 // @match        *://*/web/index.html
 // @match        *://*/web/

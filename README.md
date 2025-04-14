@@ -32,7 +32,7 @@
 ### 3. 安装油猴脚本
 
 1. 确保浏览器已安装Tampermonkey或类似的用户脚本管理器
-2. 将`embyLaunchLocalFiles.js`内容添加为新的用户脚本
+2. [点击此处安装](https://raw.githubusercontent.com/raindrop213/embyLaunchLocalFiles/main/embyLaunchLocalFiles.user.js)
 
 ### 4. 设置自动启动(可选)
 
