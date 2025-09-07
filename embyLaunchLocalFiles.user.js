@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         embyLaunchLocalFiles
 // @namespace    http://tampermonkey.net/
-// @version      0.1.0
+// @version      0.1.1
 // @description  open media folder and play videos with local players in emby/jellfin
 // @license      MIT
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=emby.media
@@ -114,29 +114,27 @@
         const fullPathEle = document.querySelector(".mediaSources .mediaSource .sectionTitle > div:not([class]):first-child");
         let fullPath = fullPathEle ? fullPathEle.innerText : "";
 
-        if (new RegExp('^[a-zA-Z]:').test(fullPath)) {
-            try {
-                // 编码路径
-                const encodedPath = encodeURIComponent(fullPath);
-                const url = `${serverUrl}/open?action=${action}&path=${encodedPath}`;
-                
-                // 发送请求到Python服务器
-                const response = await fetch(url);
-                const data = await response.json();
-                
-                if (data.status === "success") {
-                    console.log(data.message);
-                } else {
-                    console.error(data.message);
-                    alert(data.message);
-                }
-            } catch (error) {
-                console.error("请求失败:", error);
-                alert(`请求失败: ${error.message}\n请确保Python服务器正在运行。`);
+        if (!fullPath) {
+            alert("未获取到媒体文件路径");
+            return;
+        }
+        try {
+            // 始终发送到服务端，由服务端进行路径重写与处理
+            const encodedPath = encodeURIComponent(fullPath);
+            const url = `${serverUrl}/open?action=${action}&path=${encodedPath}`;
+
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data.status === "success") {
+                console.log(data.message);
+            } else {
+                console.error(data.message);
+                alert(data.message);
             }
-        } else {
-            console.log("无法处理: 该媒体文件不是本地Windows路径");
-            alert("无法处理: 该媒体文件不是本地Windows路径");
+        } catch (error) {
+            console.error("请求失败:", error);
+            alert(`请求失败: ${error.message}\n请确保Python服务器正在运行。`);
         }
     }
 
